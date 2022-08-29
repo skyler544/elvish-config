@@ -3,11 +3,27 @@
 #############################################
 set paths = [
     $@paths
-    /Users/skyler.mayfield/.composer/vendor/bin
+    /Users/skyler.mayfield/.local/bin
+    /Users/skyler.mayfield/homebrew/opt/php/bin
     /Users/skyler.mayfield/homebrew/bin
     /Users/skyler.mayfield/.emacs.d/bin
     /usr/local/texlive/2022/bin/universal-darwin
 ]
+
+#############################################
+##### Alias functions
+#############################################
+fn ls { | @dir |
+  if (eq $dir []) {
+    put (pwd)
+    e:ls -G;
+  } else {
+    for d $dir {
+      put $d;
+      e:ls -G $d;
+    }
+  }
+}
 
 #############################################
 ##### Left Prompt = Current directory
@@ -23,7 +39,7 @@ set edit:prompt = {
 #############################################
 use str
 fn branch {
-  put (git rev-parse --abbrev-ref HEAD)
+  put '['(git rev-parse --abbrev-ref HEAD)']';
 }
 
 fn splitter {
@@ -49,6 +65,7 @@ set edit:rprompt = {
     # styled (truncBranch) inverse;
     styled (branch) inverse;
   } else {
-    styled (whoami)@(hostname) inverse;
+    # styled (whoami)@(hostname) inverse;
+    styled '[sm'@'new-work]' inverse;
   }
 }
