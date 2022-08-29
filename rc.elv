@@ -1,4 +1,9 @@
 #############################################
+##### imports
+#############################################
+use str;
+
+#############################################
 ##### Environment
 #############################################
 set paths = [
@@ -18,9 +23,18 @@ fn ls { | @dir |
     put (pwd)
     e:ls -G;
   } else {
+    var flag;
     for d $dir {
-      put $d;
-      e:ls -G $d;
+      if (str:has-prefix $d -) {
+        set flag = $d;
+      } else {
+        put $d;
+        if (eq $nil $flag) {
+          e:ls -G $d;
+        } else {
+          e:ls -G $flag $d;
+        }
+      }
     }
   }
 }
@@ -37,7 +51,6 @@ set edit:prompt = {
 #############################################
 ##### Right Prompt = Git Branch
 #############################################
-use str
 fn branch {
   put '['(git rev-parse --abbrev-ref HEAD)']';
 }
