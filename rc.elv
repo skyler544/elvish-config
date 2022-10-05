@@ -8,13 +8,15 @@ use str;
 #############################################
 set paths = [
     $@paths
-    /Users/skyler.mayfield/.local/bin
-    /Users/skyler.mayfield/homebrew/opt/php/bin
-    /Users/skyler.mayfield/homebrew/bin
-    /Users/skyler.mayfield/homebrew/sbin
-    /Users/skyler.mayfield/.emacs.d/bin
+    ~/homebrew/opt/php/bin
+    ~/homebrew/bin
+    ~/homebrew/sbin
+    ~/.nvm/versions/node/v16.13.1/bin
+    ~/.nvm/versions/node/v16.13.1/lib
+    ~/.local/bin
+    ~/.emacs.d/bin
+    ~/.composer/vendor/bin
     /usr/local/texlive/2022/bin/universal-darwin
-    /Users/skyler.mayfield/.composer/vendor/bin
 ]
 
 #############################################
